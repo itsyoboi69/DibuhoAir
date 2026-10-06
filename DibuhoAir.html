@@ -1,0 +1,2403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DibuhoAir Pro — The Art & The Artist Printable Edition</title>
+<!-- Google Fonts for Clay / Kid-Friendly Aesthetic -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Fredoka:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  /* DARK MODE DEFAULT */
+  --bg-primary: #2a1b4e;
+  --bg-secondary: #3b2569;
+  --text-main: #ffffff;
+  --text-muted: #e0d5f5;
+  --accent-blue: #00e5ff;
+  --accent-purple: #b537ff;
+  --accent-yellow: #ffd000;
+  --accent-pink: #ff3385;
+  --accent-green: #00e676;
+  --success: #00e676;
+  
+  --header-bg: #331c5c;
+  --header-border: #231242;
+  --card-bg: #231343;
+  --card-border: #5a349e;
+  --frame-bg: #1d0f36;
+  --frame-border: #6b3bb8;
+
+  /* Claymorphism Shadows & Borders */
+  --clay-bg-purple: #422875;
+  --clay-shadow-purple: inset -6px -6px 12px rgba(0, 0, 0, 0.4), inset 6px 6px 12px rgba(255, 255, 255, 0.25), 0 12px 24px rgba(0, 0, 0, 0.3);
+  --clay-shadow-btn: inset -4px -4px 8px rgba(0,0,0,0.35), inset 4px 4px 8px rgba(255,255,255,0.4), 0 8px 16px rgba(0,0,0,0.25);
+  --clay-shadow-card: inset -8px -8px 16px rgba(0,0,0,0.25), inset 8px 8px 16px rgba(255,255,255,0.3), 0 20px 40px rgba(0,0,0,0.5);
+
+  --bg-radial-1: #ff3385;
+  --bg-radial-2: #00e5ff;
+  --bg-gradient-start: #231343;
+  --bg-gradient-end: #351c5e;
+}
+
+/* LIGHT MODE OVERRIDES */
+[data-theme="light"] {
+  --bg-primary: #eef2ff;
+  --bg-secondary: #e0e7ff;
+  --text-main: #1e1b4b;
+  --text-muted: #4338ca;
+  --accent-blue: #0284c7;
+  --accent-purple: #7c3aed;
+  --accent-yellow: #d97706;
+  --accent-pink: #db2777;
+  --accent-green: #059669;
+  --success: #10b981;
+
+  --header-bg: #ffffff;
+  --header-border: #c7d2fe;
+  --card-bg: #ffffff;
+  --card-border: #a5b4fc;
+  --frame-bg: #f1f5f9;
+  --frame-border: #818cf8;
+
+  --clay-bg-purple: #818cf8;
+  --clay-shadow-purple: inset -6px -6px 12px rgba(0, 0, 0, 0.1), inset 6px 6px 12px rgba(255, 255, 255, 0.8), 0 12px 24px rgba(0, 0, 0, 0.1);
+  --clay-shadow-btn: inset -4px -4px 8px rgba(0,0,0,0.15), inset 4px 4px 8px rgba(255,255,255,0.8), 0 8px 16px rgba(0,0,0,0.1);
+  --clay-shadow-card: inset -8px -8px 16px rgba(0,0,0,0.08), inset 8px 8px 16px rgba(255,255,255,0.9), 0 20px 40px rgba(0,0,0,0.15);
+
+  --bg-radial-1: #fbcfe8;
+  --bg-radial-2: #bae6fd;
+  --bg-gradient-start: #e0e7ff;
+  --bg-gradient-end: #f3e8ff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--bg-primary);
+  background-image: 
+    radial-gradient(circle at 20% 20%, var(--bg-radial-1) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, var(--bg-radial-2) 0%, transparent 40%),
+    linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+  background-attachment: fixed;
+  color: var(--text-main);
+  font-family: 'Fredoka', 'Bubblegum Sans', sans-serif;
+  font-size: 18px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+.kids-animation-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.balloon {
+  position: absolute;
+  bottom: -160px;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  opacity: 0.85;
+  display: grid;
+  place-items: center;
+  font-size: 34px;
+  box-shadow: inset -4px -4px 8px rgba(0, 0, 0, 0.3), inset 4px 4px 8px rgba(255, 255, 255, 0.4);
+  animation: floatUp 15s infinite linear;
+}
+
+.balloon-1 { left: 3%; animation-delay: 0s; animation-duration: 14s; }
+.balloon-2 { left: 12%; animation-delay: 4s; animation-duration: 18s; }
+.balloon-3 { left: 24%; animation-delay: 8s; animation-duration: 13s; }
+.balloon-4 { left: 36%; animation-delay: 2s; animation-duration: 16s; }
+.balloon-5 { left: 48%; animation-delay: 6s; animation-duration: 12s; }
+.balloon-6 { left: 60%; animation-delay: 1s; animation-duration: 15s; }
+.balloon-7 { left: 72%; animation-delay: 9s; animation-duration: 17s; }
+.balloon-8 { left: 82%; animation-delay: 3s; animation-duration: 14s; }
+.balloon-9 { left: 91%; animation-delay: 7s; animation-duration: 19s; }
+.balloon-10 { left: 97%; animation-delay: 5s; animation-duration: 11s; }
+
+.floating-item {
+  position: absolute;
+  bottom: -120px;
+  opacity: 0.9;
+  filter: drop-shadow(0px 8px 12px rgba(0,0,0,0.25));
+  animation: floatUp 16s infinite ease-in-out;
+}
+
+.item-doughnut { left: 8%; width: 65px; height: 65px; animation-delay: 2s; animation-duration: 18s; }
+.item-watermelon { left: 42%; width: 60px; height: 60px; animation-delay: 5s; animation-duration: 15s; }
+.item-star { left: 68%; width: 55px; height: 55px; animation-delay: 1s; animation-duration: 20s; }
+.item-cloud { left: 88%; width: 75px; height: 50px; animation-delay: 8s; animation-duration: 17s; }
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-65vh) rotate(15deg); }
+  100% { transform: translateY(-130vh) rotate(-15deg); }
+}
+
+.animated-bird {
+  position: absolute;
+  width: 45px;
+  height: 30px;
+  opacity: 0.85;
+  filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+  animation: flyAcross 18s infinite linear;
+}
+
+.animated-bird-1 { top: 8%; animation-delay: 0s; animation-duration: 22s; }
+.animated-bird-2 { top: 20%; animation-delay: 7s; animation-duration: 17s; }
+.animated-bird-3 { top: 38%; animation-delay: 3s; animation-duration: 25s; }
+.animated-bird-4 { top: 58%; animation-delay: 11s; animation-duration: 19s; }
+.animated-bird-5 { top: 75%; animation-delay: 5s; animation-duration: 21s; }
+
+.bird-wing {
+  animation: flapWing 0.35s infinite alternate ease-in-out;
+  transform-origin: center;
+}
+
+@keyframes flapWing {
+  0% { transform: scaleY(1); }
+  100% { transform: scaleY(-0.6); }
+}
+
+@keyframes flyAcross {
+  0% { left: -80px; transform: translateY(0px) scale(0.9); }
+  25% { transform: translateY(-20px) scale(1); }
+  50% { transform: translateY(15px) scale(1.1); }
+  75% { transform: translateY(-15px) scale(0.95); }
+  100% { left: 105vw; transform: translateY(0px) scale(1); }
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--header-bg);
+  border-bottom: 6px solid var(--header-border);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 6vw;
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: 'Bubblegum Sans', cursive;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--accent-yellow);
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+}
+
+.brand-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--accent-pink);
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 26px;
+  box-shadow: var(--clay-shadow-btn);
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.chip {
+  padding: 10px 22px;
+  background: var(--clay-bg-purple);
+  border-radius: 30px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: var(--clay-shadow-btn);
+}
+.chip b { color: var(--accent-yellow); }
+
+.theme-toggle-btn {
+  background: var(--accent-yellow);
+  color: #000;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: var(--clay-shadow-btn);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+.theme-toggle-btn:hover { transform: scale(1.05); }
+
+main {
+  position: relative;
+  z-index: 10;
+  width: min(1600px, 98vw); /* Expanded main container width */
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 50px;
+  align-items: center;
+  padding: 40px 0 80px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: var(--accent-yellow);
+  font-weight: 800;
+  margin-bottom: 18px;
+  background: var(--clay-bg-purple);
+  padding: 8px 20px;
+  border-radius: 30px;
+  box-shadow: var(--clay-shadow-btn);
+}
+.eyebrow-dot {
+  width: 12px;
+  height: 12px;
+  background: var(--accent-yellow);
+  border-radius: 50%;
+}
+
+h1 {
+  font-family: 'Bubblegum Sans', cursive;
+  font-size: clamp(48px, 6vw, 82px);
+  line-height: 1.05;
+  font-weight: 400;
+  margin-bottom: 24px;
+  color: var(--text-main);
+  text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+}
+h1 span {
+  color: var(--accent-blue);
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-yellow), var(--accent-pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.lead {
+  color: var(--text-muted);
+  font-size: 22px;
+  line-height: 1.5;
+  margin-bottom: 36px;
+  font-weight: 600;
+}
+
+button.btn {
+  padding: 18px 36px;
+  border-radius: 35px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+}
+button.btn:hover { transform: translateY(-4px) scale(1.03); }
+button.btn-primary {
+  background: var(--accent-pink);
+  color: white;
+  box-shadow: var(--clay-shadow-btn);
+  text-shadow: 1px 1px 0px rgba(0,0,0,0.4);
+}
+
+.workspace { display: none; }
+
+.workspace-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 4px solid var(--clay-bg-purple);
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.workspace-header h2 {
+  font-family: 'Bubblegum Sans', cursive;
+  font-size: 42px;
+  font-weight: 400;
+  color: var(--text-main);
+}
+.workspace-header h2 span { color: var(--accent-yellow); }
+
+.btn-secondary {
+  background: var(--clay-bg-purple);
+  color: #fff;
+  box-shadow: var(--clay-shadow-btn);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.panel {
+  background: var(--clay-bg-purple);
+  border-radius: 35px;
+  padding: 28px;
+  box-shadow: var(--clay-shadow-purple);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.panel-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--accent-yellow);
+  text-transform: uppercase;
+}
+
+.canvas-container {
+  position: relative;
+  background: #180d30;
+  border-radius: 28px;
+  overflow: hidden;
+  aspect-ratio: 16/10;
+  box-shadow: inset -6px -6px 12px rgba(255,255,255,0.1), inset 6px 6px 12px rgba(0,0,0,0.6);
+}
+.canvas-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+  opacity: 0.45;
+}
+.canvas-container canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+#handCanvas { transform: scaleX(-1); }
+
+.bg-template-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.control-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.btn-action {
+  padding: 12px 20px;
+  background: rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--clay-shadow-btn);
+  transition: all 0.2s ease;
+}
+.btn-action:hover {
+  transform: translateY(-2px);
+  background: rgba(0, 0, 0, 0.35);
+}
+.btn-action.active { 
+  background: var(--accent-pink); 
+  color: #ffffff;
+}
+
+.brush-control-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 8px 16px;
+  border-radius: 25px;
+  box-shadow: inset -4px -4px 8px rgba(255,255,255,0.1), inset 4px 4px 8px rgba(0,0,0,0.5);
+  flex-wrap: wrap;
+}
+.brush-control-container label {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--accent-yellow);
+  text-transform: uppercase;
+}
+.brush-slider {
+  accent-color: var(--accent-pink);
+  cursor: pointer;
+  width: 90px;
+}
+.btn-size {
+  padding: 6px 14px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+  box-shadow: var(--clay-shadow-btn);
+}
+.btn-size.active {
+  background: var(--accent-purple);
+  color: #fff;
+}
+
+.stats-matrix {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.stats-matrix .stat-box {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  padding: 14px;
+  text-align: center;
+  box-shadow: inset -3px -3px 6px rgba(255,255,255,0.08), inset 3px 3px 6px rgba(0,0,0,0.4);
+}
+.stat-box span { display: block; font-size: 12px; color: #ffffff; opacity: 0.8; font-weight: 700; text-transform: uppercase; }
+.stat-box b { font-size: 16px; font-weight: 800; color: #ffffff; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+
+.reflection-panel {
+  grid-column: 1 / -1;
+  background: var(--clay-bg-purple);
+}
+
+.floating-overlay {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--accent-yellow);
+  box-shadow: var(--clay-shadow-btn);
+}
+.hidden { display: none !important; }
+
+.color-bar-overlay {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  gap: 12px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px 16px;
+  border-radius: 30px;
+  box-shadow: var(--clay-shadow-btn);
+  z-index: 10;
+}
+.color-swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  box-shadow: var(--clay-shadow-btn);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.color-swatch.active {
+  transform: scale(1.35);
+  box-shadow: 0 0 12px #ffffff, inset -3px -3px 6px rgba(0,0,0,0.4);
+}
+
+.hand-instructions-panel {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 25px;
+  padding: 18px;
+  box-shadow: inset -4px -4px 8px rgba(255,255,255,0.08), inset 4px 4px 8px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+.hand-instructions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Adjusted grid columns to fit side-by-side cleanly */
+  gap: 12px;
+}
+.instruction-card {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: inset -2px -2px 4px rgba(255,255,255,0.05), inset 2px 2px 4px rgba(0,0,0,0.3);
+}
+.instruction-card h4 {
+  font-size: 16px;
+  color: var(--accent-yellow);
+  margin-bottom: 2px;
+}
+.instruction-card p {
+  font-size: 13px;
+  color: #ffffff;
+  opacity: 0.9;
+  line-height: 1.3;
+}
+
+.canvas-grid-bg {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px) !important;
+  background-size: 26px 26px !important;
+}
+
+.gesture-lock-indicator {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 800;
+  color: #ffffff;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: var(--clay-shadow-btn);
+}
+.gesture-lock-indicator span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--success);
+}
+
+.print-cards-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.art-artist-card {
+  background-color: var(--card-bg);
+  background-image: 
+    radial-gradient(circle at 10% 15%, rgba(255, 51, 133, 0.3) 0%, transparent 45%),
+    radial-gradient(circle at 90% 85%, rgba(0, 229, 255, 0.3) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(255, 208, 0, 0.15) 0%, transparent 60%);
+  color: var(--text-main);
+  border-radius: 40px;
+  padding: 36px;
+  border: 6px solid var(--card-border);
+  box-shadow: var(--clay-shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.poster-decor-balloon {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+  box-shadow: inset -3px -3px 6px rgba(0, 0, 0, 0.4), inset 3px 3px 6px rgba(255, 255, 255, 0.5);
+  opacity: 0.95;
+  z-index: 2;
+}
+.poster-balloon-left {
+  top: 25px;
+  left: 25px;
+  background: var(--accent-pink);
+  transform: rotate(-15deg);
+}
+.poster-balloon-right {
+  top: 25px;
+  right: 25px;
+  background: var(--accent-yellow);
+  transform: rotate(15deg);
+}
+
+.poster-decor-star {
+  position: absolute;
+  font-size: 22px;
+  color: var(--accent-yellow);
+  text-shadow: 0 0 10px rgba(255, 208, 0, 0.8);
+  pointer-events: none;
+}
+
+.card-header-title {
+  text-align: center;
+  border-bottom: 4px dashed rgba(255, 255, 255, 0.2);
+  padding-bottom: 20px;
+}
+.card-header-title h2 {
+  font-family: 'Bubblegum Sans', cursive;
+  font-size: 54px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  background: linear-gradient(135deg, var(--accent-yellow), var(--accent-pink), var(--accent-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(3px 3px 0px rgba(0,0,0,0.3));
+  margin-bottom: 4px;
+}
+.card-header-title p {
+  font-size: 18px;
+  color: var(--accent-yellow);
+  font-weight: 700;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.art-artist-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.frame-box {
+  background: var(--frame-bg);
+  border-radius: 30px;
+  padding: 22px;
+  border: 4px solid var(--frame-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  box-shadow: inset -6px -6px 12px rgba(0,0,0,0.3), inset 6px 6px 12px rgba(255,255,255,0.15), 0 10px 20px rgba(0,0,0,0.2);
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.frame-box-badge {
+  position: absolute;
+  top: -16px;
+  background: var(--accent-pink);
+  color: white;
+  padding: 4px 18px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 800;
+  box-shadow: var(--clay-shadow-btn);
+  text-transform: uppercase;
+}
+
+.frame-box h3 {
+  font-family: 'Bubblegum Sans', cursive;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--accent-yellow);
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 6px;
+}
+
+.image-frame-holder {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 22px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.4);
+}
+.image-frame-holder img, .image-frame-holder svg, .image-frame-holder canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.poster-quote-banner {
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+  border: 3px solid var(--accent-yellow);
+  border-radius: 25px;
+  padding: 16px 24px;
+  text-align: center;
+  box-shadow: var(--clay-shadow-btn);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.poster-quote-text {
+  font-family: 'Bubblegum Sans', cursive;
+  font-size: 26px;
+  color: #ffffff;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
+  line-height: 1.2;
+}
+.poster-quote-author {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--accent-yellow);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.art-artist-card.frame-space {
+  border: 8px solid #00e5ff !important;
+  background-image: radial-gradient(circle at 50% 50%, #0d1b2a 0%, #000814 100%) !important;
+  box-shadow: 0 0 25px rgba(0, 229, 255, 0.6) !important;
+}
+.art-artist-card.frame-dino {
+  border: 8px solid #10b981 !important;
+  background-image: radial-gradient(circle at 50% 50%, #1b4332 0%, #081c15 100%) !important;
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.6) !important;
+}
+.art-artist-card.frame-gold {
+  border: 10px solid #ffd000 !important;
+  background-image: radial-gradient(circle at 50% 50%, #3a2e00 0%, #1f1800 100%) !important;
+  box-shadow: 0 0 30px rgba(255, 208, 0, 0.8) !important;
+}
+
+.auto-stamp-badge {
+  background: var(--clay-bg-purple);
+  border: 3px solid var(--accent-yellow);
+  border-radius: 20px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  box-shadow: var(--clay-shadow-btn);
+  margin-top: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  color: #ffffff;
+}
+.auto-stamp-badge input.artist-name-input {
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px dashed var(--accent-yellow);
+  border-radius: 12px;
+  color: var(--accent-yellow);
+  font-family: 'Fredoka', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  padding: 4px 10px;
+  outline: none;
+  width: 160px;
+}
+
+#celebrationCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  display: none;
+}
+
+.duplicate-print-only {
+  display: none;
+}
+
+/* ========================================================= */
+/* DUAL MONITOR EXTERNAL DISPLAY MODE STYLING               */
+/* ========================================================= */
+body.display-mode header,
+body.display-mode .hero,
+body.display-mode .workspace-header,
+body.display-mode .no-print,
+body.display-mode section:not(.workspace),
+body.display-mode .dashboard-grid > div:not(.reflection-panel) {
+  display: none !important;
+}
+
+body.display-mode main {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+body.display-mode .workspace {
+  display: block !important;
+}
+
+body.display-mode .dashboard-grid {
+  display: block !important;
+}
+
+body.display-mode .reflection-panel {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 2vw !important;
+}
+
+body.display-mode .art-artist-card {
+  width: min(100%, 1200px);
+  margin: 0 auto;
+  transform: scale(0.95);
+}
+
+/* ========================================================= */
+/* DIRECT NATIVE PDF PRINT STYLING FOR DUAL 2-IN-1 LAYOUT     */
+/* ========================================================= */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm;
+  }
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  header, .hero, .workspace-header, .hand-instructions-panel, .control-bar, .no-print, section:not(.workspace), .dashboard-grid > div:not(.reflection-panel), .kids-animation-layer, #celebrationCanvas {
+    display: none !important;
+  }
+  body {
+    background: transparent !important;
+  }
+  main {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+  .dashboard-grid {
+    display: block !important;
+  }
+  .reflection-panel {
+    box-shadow: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+  }
+
+  .duplicate-print-only {
+    display: flex !important;
+  }
+
+  .print-cards-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8mm !important;
+    height: 100vh !important;
+    justify-content: space-between !important;
+  }
+
+  .art-artist-card {
+    page-break-inside: avoid !important;
+    border-radius: 20px !important;
+    padding: 14px 18px !important;
+    border-width: 4px !important;
+    gap: 10px !important;
+    height: 48.5% !important;
+    box-sizing: border-box !important;
+  }
+
+  .poster-decor-balloon {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 18px !important;
+    top: 10px !important;
+  }
+
+  .card-header-title {
+    padding-bottom: 6px !important;
+    border-bottom-width: 2px !important;
+  }
+
+  .card-header-title h2 {
+    font-size: 26px !important;
+    background: linear-gradient(135deg, var(--accent-yellow), var(--accent-pink), var(--accent-blue)) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+  }
+
+  .card-header-title p {
+    font-size: 11px !important;
+  }
+
+  .art-artist-grid {
+    gap: 12px !important;
+  }
+
+  .frame-box {
+    border-radius: 16px !important;
+    padding: 8px !important;
+    border-width: 2px !important;
+    gap: 6px !important;
+  }
+
+  .frame-box-badge {
+    top: -10px !important;
+    font-size: 9px !important;
+    padding: 2px 10px !important;
+  }
+
+  .frame-box h3 {
+    font-size: 15px !important;
+    margin-top: 2px !important;
+  }
+
+  .image-frame-holder {
+    border-radius: 12px !important;
+    aspect-ratio: 16/9 !important;
+  }
+
+  .poster-quote-banner {
+    padding: 6px 12px !important;
+    border-radius: 14px !important;
+    border-width: 2px !important;
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple)) !important;
+  }
+
+  .poster-quote-text {
+    font-size: 14px !important;
+    color: #ffffff !important;
+  }
+
+  .poster-quote-author {
+    font-size: 9px !important;
+    color: var(--accent-yellow) !important;
+  }
+
+  .auto-stamp-badge {
+    padding: 6px 12px !important;
+    font-size: 11px !important;
+    border-radius: 12px !important;
+    border-width: 2px !important;
+    margin-top: 0 !important;
+    background: var(--clay-bg-purple) !important;
+    color: #ffffff !important;
+  }
+
+  .auto-stamp-badge input.artist-name-input {
+    border: none !important;
+    background: transparent !important;
+    color: var(--accent-yellow) !important;
+    font-weight: bold !important;
+    font-size: 11px !important;
+    width: 110px !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<canvas id="celebrationCanvas"></canvas>
+
+<div class="kids-animation-layer">
+  <div class="balloon balloon-1" style="background:#ff3366;">✋</div>
+  <div class="balloon balloon-2" style="background:#ffd000;">✌</div>
+  <div class="balloon balloon-3" style="background:#00e5ff;">👍</div>
+  <div class="balloon balloon-4" style="background:#b537ff;">🤌</div>
+  <div class="balloon balloon-5" style="background:#00e676;">✊</div>
+  <div class="balloon balloon-6" style="background:#ff9100;">🖐️</div>
+  <div class="balloon balloon-7" style="background:#ff3385;">👌</div>
+  <div class="balloon balloon-8" style="background:#00e5ff;">✌️</div>
+  <div class="balloon balloon-9" style="background:#ffd000;">👍</div>
+  <div class="balloon balloon-10" style="background:#b537ff;">✋</div>
+
+  <svg class="floating-item item-doughnut" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="40" fill="#f4a261" />
+    <circle cx="50" cy="50" r="35" fill="#e76f51" />
+    <path d="M50 15 C 65 15, 75 20, 80 35 C 85 50, 75 60, 85 70 C 70 85, 55 80, 50 85 C 30 85, 15 70, 15 50 C 15 30, 30 15, 50 15 Z" fill="#ff69b4" />
+    <circle cx="50" cy="50" r="15" fill="#2a1b4e" class="doughnut-hole" />
+    <rect x="35" y="25" width="8" height="3" rx="2" fill="#ffd000" transform="rotate(30 35 25)"/>
+    <rect x="60" y="30" width="8" height="3" rx="2" fill="#00e5ff" transform="rotate(-20 60 30)"/>
+    <rect x="65" y="60" width="8" height="3" rx="2" fill="#00e676" transform="rotate(45 65 60)"/>
+    <rect x="30" y="65" width="8" height="3" rx="2" fill="#ffffff" transform="rotate(-15 30 65)"/>
+  </svg>
+
+  <svg class="floating-item item-watermelon" viewBox="0 0 100 100">
+    <path d="M 10 30 A 40 40 0 0 0 90 30 Z" fill="#2ec4b6" />
+    <path d="M 15 30 A 35 35 0 0 0 85 30 Z" fill="#c7f9cc" />
+    <path d="M 20 30 A 30 30 0 0 0 80 30 Z" fill="#e63946" />
+    <circle cx="40" cy="40" r="2.5" fill="#000" />
+    <circle cx="50" cy="48" r="2.5" fill="#000" />
+    <circle cx="60" cy="40" r="2.5" fill="#000" />
+  </svg>
+
+  <svg class="floating-item item-star" viewBox="0 0 100 100">
+    <polygon points="50,5 64,36 98,36 70,57 81,91 50,70 19,91 30,57 2,36 36,36" fill="#ffd000" stroke="#ffb703" stroke-width="3"/>
+    <circle cx="40" cy="45" r="4" fill="#000"/>
+    <circle cx="60" cy="45" r="4" fill="#000"/>
+    <path d="M 42 58 Q 50 66 58 58" stroke="#000" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </svg>
+
+  <svg class="floating-item item-cloud" viewBox="0 0 120 80">
+    <path d="M 20 60 A 20 20 0 0 1 30 25 A 25 25 0 0 1 75 20 A 20 20 0 0 1 100 40 A 18 18 0 0 1 100 60 Z" fill="#00e5ff" opacity="0.9"/>
+  </svg>
+
+  <svg class="animated-bird animated-bird-1" viewBox="0 0 50 30">
+    <path class="bird-wing" d="M10,20 Q25,0 40,20 Q25,12 10,20 Z" fill="#ffd000" />
+    <path d="M15,20 Q25,10 35,20" stroke="#ffffff" stroke-width="2" fill="none" />
+  </svg>
+  <svg class="animated-bird animated-bird-2" viewBox="0 0 50 30">
+    <path class="bird-wing" d="M10,20 Q25,0 40,20 Q25,12 10,20 Z" fill="#00e5ff" />
+    <path d="M15,20 Q25,10 35,20" stroke="#ffffff" stroke-width="2" fill="none" />
+  </svg>
+  <svg class="animated-bird animated-bird-3" viewBox="0 0 50 30">
+    <path class="bird-wing" d="M10,20 Q25,0 40,20 Q25,12 10,20 Z" fill="#ff3385" />
+    <path d="M15,20 Q25,10 35,20" stroke="#ffffff" stroke-width="2" fill="none" />
+  </svg>
+  <svg class="animated-bird animated-bird-4" viewBox="0 0 50 30">
+    <path class="bird-wing" d="M10,20 Q25,0 40,20 Q25,12 10,20 Z" fill="#00e676" />
+    <path d="M15,20 Q25,10 35,20" stroke="#ffffff" stroke-width="2" fill="none" />
+  </svg>
+  <svg class="animated-bird animated-bird-5" viewBox="0 0 50 30">
+    <path class="bird-wing" d="M10,20 Q25,0 40,20 Q25,12 10,20 Z" fill="#b537ff" />
+    <path d="M15,20 Q25,10 35,20" stroke="#ffffff" stroke-width="2" fill="none" />
+  </svg>
+</div>
+
+<header>
+  <div class="brand"><div class="brand-icon">D</div><span>DibuhoAir Studio</span></div>
+  <div class="header-controls">
+    <div class="chip">Dynamic System Loaded: <b id="totalRegistryCounter">Loading Matrix...</b></div>
+    <button class="theme-toggle-btn" id="openExternalDisplayBtn" style="background:var(--accent-blue); color:#000; font-weight:800;">📺 Pop-out External Screen</button>
+    <button class="theme-toggle-btn" id="displayModeToggleBtn" style="background:var(--accent-pink); color:#fff; font-weight:800;">📺 Display Output Mode</button>
+    <button class="theme-toggle-btn" id="themeToggleBtn">🌙 Dark Mode</button>
+  </div>
+</header>
+
+<main>
+  <section id="homeView">
+    <div class="hero">
+      <div>
+        <div class="eyebrow"><span class="eyebrow-dot"></span> Kids Friendly AI Engine Active</div>
+        <h1>AI Realtime <span>Dynamic Sketch Studio</span></h1>
+        <p class="lead">Interactive Art Studio for Kids</p>
+        <button class="btn btn-primary" id="launchDashboardBtn">Launch Studio Space</button>
+      </div>
+      <!-- Right Side Container Expanded & Font Aligned with Theme -->
+      <div style="background: var(--clay-bg-purple); border-radius: 35px; padding: 42px; box-shadow: var(--clay-shadow-purple); border: 4px solid var(--accent-blue); display: flex; flex-direction: column; gap: 24px;">
+        <p style="font-size: 21px; line-height: 1.6; color: var(--text-main); font-weight: 600;">
+          Powered by smart webcam gesture-tracking, children can pinch their fingers to draw glowing neon strokes, flash a peace sign to switch vibrant colors, and open their palms to wipe the canvas clean. It turns playtime into a high-tech gallery experience that automatically frames their live video alongside their digital artwork into a stunning, printable poster.
+        </p>
+        <blockquote style="border-left: 6px solid var(--accent-yellow); padding-left: 20px; margin-top: 4px; font-style: italic; color: var(--accent-yellow); font-family: 'Bubblegum Sans', cursive; font-size: 26px; line-height: 1.3; text-shadow: 2px 2px 0px rgba(0,0,0,0.2);">
+          As Pablo Picasso famously said, "Every child is an artist. The problem is how to remain an artist once we grow up."
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section class="workspace" id="workspaceView">
+    <div class="workspace-header">
+      <div><h2>Predictive <span>Custom Array & Geometric Grid</span></h2></div>
+      <button class="btn btn-secondary" id="exitWorkspaceBtn">← Exit Studio</button>
+    </div>
+
+    <div class="dashboard-grid">
+      <div class="panel">
+        <div class="panel-title"><span>1 · Camera Feed & Pinch Interface</span><span class="chip" id="camStatusLabel">Offline</span></div>
+        <div class="canvas-container">
+          <video id="webcamVideo" playsinline muted></video>
+          <canvas id="handCanvas"></canvas>
+          <div class="floating-overlay" id="trackingPrompt">Camera activation required</div>
+        </div>
+        <div class="control-bar"><button class="btn-action" id="toggleCamBtn">Launch Camera</button></div>
+        <div class="stats-matrix">
+          <div class="stat-box"><span>Cam FPS</span><b id="fpsVal">0</b></div>
+          <div class="stat-box"><span>Hand State</span><b id="gestureVal" style="color:var(--accent-blue);">None</b></div>
+          <div class="stat-box"><span>Draw Trigger</span><b id="drawStateVal">Idle</b></div>
+          <div class="stat-box"><span>Match Confidence</span><b id="sketchMatchVal" style="color:var(--success);">0%</b></div>
+        </div>
+
+        <div class="hand-instructions-panel no-print">
+          <div class="panel-title"><span style="color:var(--accent-yellow);">✍️ Kids Hand Gesture Guide ✨</span></div>
+          <div class="hand-instructions-grid">
+            <div class="instruction-card">
+              <div style="font-size:26px;">🤏</div>
+              <div>
+                <h4>Draw / Paint</h4>
+                <p><b>Pinch Right Hand:</b> Touch index & thumb together to draw!</p>
+              </div>
+            </div>
+            <div class="instruction-card">
+              <div style="font-size:26px;">🎨</div>
+              <div>
+                <h4>Choose Color</h4>
+                <p><b>Right Hand Up (0.5s):</b><br>
+                ☝️1=🔵 | ✌️2=🔴 | 🤟3=🟢<br>
+                🖖4=🟡 | 🖐️5=🩷</p>
+              </div>
+            </div>
+            <div class="instruction-card">
+              <div style="font-size:26px;">🧹</div>
+              <div>
+                <h4>Erase / Clear</h4>
+                <p><b>Left Hand Open Palm 🖐️ (0.5s):</b> Open 5 fingers to erase!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title"><span>2 · Kids Canvas Drawing Layer (Smoothed)</span></div>
+        <div class="canvas-container" id="drawingCanvasContainer" style="background:#180d30;">
+          
+          <svg id="bgTemplateOverlay" class="bg-template-svg" viewBox="0 0 800 500" preserveAspectRatio="none" style="display:none;"></svg>
+
+          <div class="color-bar-overlay" id="colorPaletteContainer">
+            <div class="color-swatch active" data-color="#2266ff" data-fingers="1" style="background:#2266ff;"></div>
+            <div class="color-swatch" data-color="#ff2255" data-fingers="2" style="background:#ff2255;"></div>
+            <div class="color-swatch" data-color="#10b981" data-fingers="3" style="background:#10b981;"></div>
+            <div class="color-swatch" data-color="#ffb703" data-fingers="4" style="background:#ffb703;"></div>
+            <div class="color-swatch" data-color="#ff007f" data-fingers="5" style="background:#ff007f;"></div>
+          </div>
+          <div class="gesture-lock-indicator"><span id="lockDot"></span> <div id="lockStatusTxt">Color Locked</div></div>
+          <canvas id="drawingCanvas"></canvas>
+        </div>
+        
+        <div class="control-bar">
+          <button class="btn-action" id="undoBtn">↩️ Undo</button>
+          <button class="btn-action" id="redoBtn">↪️ Redo</button>
+          <button class="btn-action" id="canvasClearBtn">Clear Trace</button>
+          <button class="btn-action" id="saveSketchBtn">Save Art</button>
+          <button class="btn-action" id="toggleGridBtn">Grid</button>
+          
+          <div class="brush-control-container">
+            <label>Size: <span id="brushSizeTxt" style="color:var(--accent-yellow);">6px</span></label>
+            <input type="range" id="brushSizeSlider" class="brush-slider" min="2" max="30" value="6">
+            <button class="btn-size" data-size="3">Small</button>
+            <button class="btn-size active" data-size="6">Mid</button>
+            <button class="btn-size" data-size="14">Large</button>
+          </div>
+        </div>
+
+        <div class="control-bar">
+          <div class="brush-control-container">
+            <label>Brush Effect:</label>
+            <button class="btn-size active" id="brushNormalBtn">Normal</button>
+            <button class="btn-size" id="brushEraserBtn">🧹 Eraser Mode</button>
+            <button class="btn-size" id="brushRainbowBtn">🌈 Rainbow</button>
+            <button class="btn-size" id="brushSparkleBtn">✨ Sparkle</button>
+          </div>
+
+          <div class="brush-control-container">
+            <label>Background:</label>
+            <button class="btn-size active" id="bgNoneBtn">None</button>
+            <button class="btn-size" id="bgSpaceBtn">🚀 Space</button>
+            <button class="btn-size" id="bgCastleBtn">🏰 Castle</button>
+            <button class="btn-size" id="bgJungleBtn">🌿 Jungle</button>
+          </div>
+
+          <div class="brush-control-container">
+            <label>Stamps:</label>
+            <button class="btn-size" id="stampStarBtn">⭐</button>
+            <button class="btn-size" id="stampHeartBtn">❤️</button>
+            <button class="btn-size" id="stampCrownBtn">👑</button>
+            <button class="btn-size" id="stampCatBtn">🐱</button>
+          </div>
+        </div>
+
+        <div class="stats-matrix">
+          <div class="stat-box"><span>AI Shape Hint</span><b id="aiShapeHintVal" style="color:var(--accent-purple);">None</b></div>
+          <div class="stat-box"><span>Aspect Ratio</span><b id="aiAspectVal">0.00</b></div>
+          <div class="stat-box"><span>Complexity Turns</span><b id="aiTurnsVal">0</b></div>
+          <div class="stat-box"><span>Target Category</span><b id="aiCategoryVal" style="color:var(--success);">None</b></div>
+        </div>
+      </div>
+
+      <div class="panel reflection-panel">
+        <div class="panel-title">
+          <span>3 · Printable Poster (2-in-1 Dual Layout)</span>
+        </div>
+
+        <div class="control-bar no-print" style="margin-bottom: 10px;">
+          <div class="brush-control-container">
+            <label>🪄 Magic Frame / Border Creator:</label>
+            <button class="btn-size active" id="frameDefaultBtn">Standard</button>
+            <button class="btn-size" id="frameSpaceBtn">🚀 Space Theme</button>
+            <button class="btn-size" id="frameDinoBtn">🦖 Dinosaur Theme</button>
+            <button class="btn-size" id="frameGoldBtn">👑 Gold Frame</button>
+          </div>
+        </div>
+        
+        <div class="print-cards-wrapper">
+          
+          <!-- CARD 1 -->
+          <div class="art-artist-card printableCard" id="mainPosterCard">
+            <div class="poster-decor-balloon poster-balloon-left">✋</div>
+            <div class="poster-decor-balloon poster-balloon-right">✌️</div>
+            
+            <div class="poster-decor-star" style="top:15px; left:48%;">✦</div>
+            <div class="poster-decor-star" style="bottom:20px; left:20px;">★</div>
+            <div class="poster-decor-star" style="bottom:20px; right:20px;">★</div>
+
+            <div class="card-header-title">
+              <h2>THE ART & THE ARTIST</h2>
+              <p>Created with DibuhoAir Pro AI Engine</p>
+            </div>
+
+            <div class="art-artist-grid">
+              <div class="frame-box">
+                <div class="frame-box-badge">📸 Live Stream</div>
+                <h3>The Artist</h3>
+                <div class="image-frame-holder artistImageHolder">
+                  <span style="color:var(--text-muted); font-size:15px; font-weight:700; text-align:center; padding:10px;">Click "Snap Photo" or Launch Camera!</span>
+                </div>
+              </div>
+
+              <div class="frame-box">
+                <div class="frame-box-badge" style="background:var(--accent-blue); color:#000;">🎨 Masterpiece</div>
+                <h3>The Art</h3>
+                <div class="image-frame-holder artHolder">
+                  <span style="color:var(--text-muted); font-size:15px; font-weight:700; text-align:center; padding:10px;">Awaiting Kids Vector Drawing...</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="poster-quote-banner">
+              <div class="poster-quote-text random-quote-text">"Every child is an artist. Never stop creating!"</div>
+              <div class="poster-quote-author random-quote-author">— Pablo Picasso</div>
+            </div>
+
+            <div class="auto-stamp-badge">
+              <div>🎨 Created by: <input type="text" class="artist-name-input artistNameInput" value="Little Artist" placeholder="Child's name"></div>
+              <div>📅 Date: <span class="autoStampDateVal" style="color:var(--accent-yellow);">2026-03-30</span></div>
+            </div>
+          </div>
+
+          <!-- CARD 2 (DUPLICATE FOR 2-IN-1 PRINT) -->
+          <div class="art-artist-card printableCard duplicate-print-only">
+            <div class="poster-decor-balloon poster-balloon-left">✋</div>
+            <div class="poster-decor-balloon poster-balloon-right">✌</div>
+            
+            <div class="poster-decor-star" style="top:15px; left:48%;">✦</div>
+            <div class="poster-decor-star" style="bottom:20px; left:20px;">★</div>
+            <div class="poster-decor-star" style="bottom:20px; right:20px;">★</div>
+
+            <div class="card-header-title">
+              <h2>THE ART & THE ARTIST</h2>
+              <p>Created with DibuhoAir Pro AI Engine</p>
+            </div>
+
+            <div class="art-artist-grid">
+              <div class="frame-box">
+                <div class="frame-box-badge">📸 Live Stream</div>
+                <h3>The Artist</h3>
+                <div class="image-frame-holder artistImageHolder">
+                  <span style="color:var(--text-muted); font-size:15px; font-weight:700; text-align:center; padding:10px;">Click "Snap Photo" or Launch Camera!</span>
+                </div>
+              </div>
+
+              <div class="frame-box">
+                <div class="frame-box-badge" style="background:var(--accent-blue); color:#000;">🎨 Masterpiece</div>
+                <h3>The Art</h3>
+                <div class="image-frame-holder artHolder">
+                  <span style="color:var(--text-muted); font-size:15px; font-weight:700; text-align:center; padding:10px;">Awaiting Kids Vector Drawing...</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="poster-quote-banner">
+              <div class="poster-quote-text random-quote-text">"Every child is an artist. Never stop creating!"</div>
+              <div class="poster-quote-author random-quote-author">— Pablo Picasso</div>
+            </div>
+
+            <div class="auto-stamp-badge">
+              <div>🎨 Created by: <input type="text" class="artist-name-input artistNameInputDuplicate" value="Little Artist" placeholder="Child's name"></div>
+              <div>📅 Date: <span class="autoStampDateVal" style="color:var(--accent-yellow);">2026-03-30</span></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- SEPARATE PRINT PDF AND SAVE PDF BUTTONS -->
+        <div class="control-bar no-print" style="margin-top: 10px;">
+          <button class="btn-action active" id="snapPhotoBtn">📸 Snap Photo of Artist</button>
+          <button class="btn-action" id="printPdfPosterBtn" style="background:var(--accent-yellow); color:#000; font-weight:800;">🖨️ Print PDF Poster</button>
+          <button class="btn-action" id="savePdfPosterBtn" style="background:var(--success); color:#000; font-weight:800;">💾 Save / Export PDF</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+<script>
+const DATASET = [
+  { id: 1, name: "circle", category: "basic_shape", aliases: ["round"] },
+  { id: 2, name: "square", category: "basic_shape", aliases: [] }
+];
+
+const FAMOUS_PAINTER_QUOTES = [
+  { quote: "Every child is an artist. The problem is how to remain an artist once we grow up.", author: "— Pablo Picasso" },
+  { quote: "I dream my painting and I paint my dream.", author: "— Vincent van Gogh" },
+  { quote: "Color is my day-long obsession, joy, and torment.", author: "— Claude Monet" },
+  { quote: "I paint flowers so they will not die.", author: "— Frida Kahlo" },
+  { quote: "Creativity takes courage.", author: "— Henri Matisse" },
+  { quote: "Painting is poetry that is seen rather than felt, and poetry is painting that is felt rather than seen.", author: "— Leonardo da Vinci" },
+  { quote: "I found I could say things with color and shapes that I couldn't say any other way—things I had no words for.", author: "— Georgia O'Keeffe" },
+  { quote: "Art washes away from the soul the dust of everyday life.", author: "— Pablo Picasso" },
+  { quote: "Great things are done by a series of small things brought together.", author: "— Vincent van Gogh" }
+];
+
+const state = {
+  isCamRunning: false,
+  isUserDrawing: false,
+  recordedStrokes: [],
+  activeStrokePoints: [],
+  undoStack: [],
+  redoStack: [],
+  fpsTimer: [],
+  lastFilteredX: null,
+  lastFilteredY: null,
+  smoothingFactor: 0.23,
+  globalMatchRegistry: [],
+  currentColor: "#2266ff",
+  brushWidth: 6,
+  
+  brushMode: 'normal',
+  selectedStamp: null,
+  stampsList: [],
+  hueIndex: 0,
+  
+  pendingFingerCount: null,
+  fingerHoldStartTime: 0,
+  HOLD_DELAY_MS: 550, 
+  
+  eraseHoldStartTime: 0,
+  ERASE_HOLD_MS: 550, 
+  lastEraseExecutionTime: 0,
+
+  isSnappedPhoto: false
+};
+
+const COLOR_MAP = {
+  1: "#2266ff",
+  2: "#ff2255",
+  3: "#10b981",
+  4: "#ffb703",
+  5: "#ff007f"
+};
+
+// BROADCAST CHANNEL FOR DUAL MONITOR REALTIME SYNC
+const syncChannel = window.BroadcastChannel ? new BroadcastChannel('dibuho_sync_channel') : null;
+
+function broadcastStateUpdate(extraData = {}) {
+  const mainCanvas = document.getElementById('drawingCanvas');
+  const artDataUrl = mainCanvas ? mainCanvas.toDataURL('image/png') : null;
+  
+  const firstArtistImg = document.querySelector('.artistImageHolder img');
+  const artistPhotoUrl = firstArtistImg ? firstArtistImg.src : null;
+  
+  const artistName = document.querySelector('.artistNameInput') ? document.querySelector('.artistNameInput').value : '';
+
+  const activeFrameBtn = document.querySelector('#frameSpaceBtn.active, #frameDinoBtn.active, #frameGoldBtn.active');
+  let frameClass = '';
+  if (activeFrameBtn) {
+    if (activeFrameBtn.id === 'frameSpaceBtn') frameClass = 'frame-space';
+    if (activeFrameBtn.id === 'frameDinoBtn') frameClass = 'frame-dino';
+    if (activeFrameBtn.id === 'frameGoldBtn') frameClass = 'frame-gold';
+  }
+
+  const quoteTextElem = document.querySelector('.random-quote-text');
+  const quoteAuthorElem = document.querySelector('.random-quote-author');
+  const quoteData = {
+    quote: quoteTextElem ? quoteTextElem.textContent : '',
+    author: quoteAuthorElem ? quoteAuthorElem.textContent : ''
+  };
+
+  const payload = {
+    artDataUrl: artDataUrl,
+    artistPhotoUrl: artistPhotoUrl,
+    artistName: artistName,
+    frameClass: frameClass,
+    quoteData: quoteData,
+    ...extraData
+  };
+
+  if (syncChannel) {
+    syncChannel.postMessage(payload);
+  } else {
+    localStorage.setItem('dibuho_dual_sync', JSON.stringify({ ...payload, _ts: Date.now() }));
+  }
+}
+
+if (syncChannel) {
+  syncChannel.onmessage = (event) => {
+    receiveSyncedData(event.data);
+  };
+} else {
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'dibuho_dual_sync' && e.newValue) {
+      receiveSyncedData(JSON.parse(e.newValue));
+    }
+  });
+}
+
+function receiveSyncedData(data) {
+  if (data.artDataUrl) {
+    const holders = document.querySelectorAll('.artHolder');
+    holders.forEach(holder => {
+      holder.innerHTML = `<img src="${data.artDataUrl}" style="width:100%; height:100%; object-fit:contain;">`;
+    });
+  } else if (data.artDataUrl === '') {
+    const holders = document.querySelectorAll('.artHolder');
+    holders.forEach(holder => {
+      holder.innerHTML = `<span style="color:var(--text-muted); font-size:15px; font-weight:700; text-align:center; padding:10px;">Canvas Cleared. Awaiting new drawing...</span>`;
+    });
+  }
+
+  if (data.artistPhotoUrl) {
+    state.isSnappedPhoto = true;
+    const holders = document.querySelectorAll('.artistImageHolder');
+    holders.forEach(holder => {
+      holder.innerHTML = `<img src="${data.artistPhotoUrl}" alt="The Artist Snap" style="width:100%; height:100%; object-fit:cover;">`;
+    });
+  }
+
+  if (data.artistName !== undefined) {
+    const mainInput = document.querySelector('.artistNameInput');
+    const dupInput = document.querySelector('.artistNameInputDuplicate');
+    if (mainInput) mainInput.value = data.artistName;
+    if (dupInput) dupInput.value = data.artistName;
+  }
+
+  if (data.frameClass !== undefined) {
+    const cards = document.querySelectorAll('.printableCard');
+    cards.forEach(card => card.classList.remove('frame-space', 'frame-dino', 'frame-gold'));
+    if (data.frameClass) {
+      cards.forEach(card => card.classList.add(data.frameClass));
+    }
+  }
+
+  if (data.quoteData && data.quoteData.quote) {
+    const quoteTexts = document.querySelectorAll('.random-quote-text');
+    const quoteAuthors = document.querySelectorAll('.random-quote-author');
+    quoteTexts.forEach(qt => qt.textContent = data.quoteData.quote);
+    quoteAuthors.forEach(qa => qa.textContent = data.quoteData.author);
+  }
+}
+
+function playSoundEffect(type) {
+  try {
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    if (type === 'select') {
+      osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.1);
+      gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+      osc.start(); osc.stop(audioCtx.currentTime + 0.1);
+    } else if (type === 'clear') {
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(200, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(80, audioCtx.currentTime + 0.2);
+      gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
+      osc.start(); osc.stop(audioCtx.currentTime + 0.2);
+    } else if (type === 'pinch') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.08);
+      gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.08);
+      osc.start(); osc.stop(audioCtx.currentTime + 0.08);
+    } else if (type === 'snap') {
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(300, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(1500, audioCtx.currentTime + 0.25);
+      gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
+      osc.start(); osc.stop(audioCtx.currentTime + 0.25);
+    } else if (type === 'stamp') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(400, audioCtx.currentTime + 0.12);
+      gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.12);
+      osc.start(); osc.stop(audioCtx.currentTime + 0.12);
+    } else if (type === 'celebrate') {
+      const notes = [523.25, 659.25, 783.99, 1046.50];
+      notes.forEach((freq, idx) => {
+        const o = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        o.type = 'triangle';
+        o.connect(g);
+        g.connect(audioCtx.destination);
+        const startTime = audioCtx.currentTime + idx * 0.12;
+        o.frequency.setValueAtTime(freq, startTime);
+        g.gain.setValueAtTime(0.2, startTime);
+        g.gain.exponentialRampToValueAtTime(0.001, startTime + 0.35);
+        o.start(startTime);
+        o.stop(startTime + 0.35);
+      });
+    }
+  } catch (e) { console.log('Audio disabled/not supported'); }
+}
+
+let pipelineCamera = null;
+const mediaPipeHandsEngine = new Hands({
+  locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`
+});
+
+mediaPipeHandsEngine.setOptions({
+  maxNumHands: 2,
+  modelComplexity: 1, 
+  minDetectionConfidence: 0.65, 
+  minTrackingConfidence: 0.65
+});
+mediaPipeHandsEngine.onResults(handleIncomingHandData);
+
+function loadDatasetAndBuild600Matrix() {
+  document.getElementById('totalRegistryCounter').innerHTML = `<b>Interactive Canvas Ready</b>`;
+  
+  const today = new Date().toISOString().split('T')[0];
+  const dateSpans = document.querySelectorAll('.autoStampDateVal');
+  dateSpans.forEach(ds => ds.textContent = today);
+
+  // Randomize painter quote on load
+  const randomQuoteObj = FAMOUS_PAINTER_QUOTES[Math.floor(Math.random() * FAMOUS_PAINTER_QUOTES.length)];
+  const quoteTexts = document.querySelectorAll('.random-quote-text');
+  const quoteAuthors = document.querySelectorAll('.random-quote-author');
+  quoteTexts.forEach(qt => qt.textContent = `"${randomQuoteObj.quote}"`);
+  quoteAuthors.forEach(qa => qa.textContent = randomQuoteObj.author);
+
+  const mainInput = document.querySelector('.artistNameInput');
+  const dupInput = document.querySelector('.artistNameInputDuplicate');
+  if(mainInput && dupInput) {
+    mainInput.addEventListener('input', (e) => {
+      dupInput.value = e.target.value;
+      broadcastStateUpdate({ artistName: e.target.value });
+    });
+    dupInput.addEventListener('input', (e) => {
+      mainInput.value = e.target.value;
+      broadcastStateUpdate({ artistName: e.target.value });
+    });
+  }
+}
+
+function countRaisedFingers(landmarks) {
+  let count = 0;
+  if (landmarks[8].y < landmarks[6].y) count++;  
+  if (landmarks[12].y < landmarks[10].y) count++; 
+  if (landmarks[16].y < landmarks[10].y) count++; 
+  if (landmarks[20].y < landmarks[18].y) count++; 
+  
+  const thumbDistance = Math.hypot(landmarks[4].x - landmarks[2].x, landmarks[4].y - landmarks[2].y);
+  if (thumbDistance > 0.08) count++;
+
+  return count;
+}
+
+function handleIncomingHandData(results) {
+  trackFpsPerformance();
+  const c = document.getElementById('handCanvas');
+  const ctx = c.getContext('2d');
+  ctx.clearRect(0, 0, c.width, c.height);
+  
+  const now = Date.now();
+
+  if (!results.multiHandLandmarks || results.multiHandLandmarks.length === 0) {
+    document.getElementById('gestureVal').textContent = "None";
+    document.getElementById('drawStateVal').textContent = "Idle";
+    if (state.isUserDrawing) handleStrokeStop();
+    state.lastFilteredX = null; state.lastFilteredY = null;
+    state.pendingFingerCount = null;
+    state.eraseHoldStartTime = 0;
+    
+    if (state.isCamRunning) {
+      setupLiveFaceStream();
+    }
+    return;
+  }
+
+  let rightHandIndex = -1;
+  let leftHandIndex = -1;
+
+  if (results.multiHandedness) {
+    results.multiHandedness.forEach((handedness, idx) => {
+      if (handedness.label === "Right") rightHandIndex = idx;
+      if (handedness.label === "Left") leftHandIndex = idx;
+    });
+  }
+
+  if (rightHandIndex === -1 && results.multiHandLandmarks.length > 0) rightHandIndex = 0;
+
+  if (leftHandIndex !== -1 && results.multiHandLandmarks[leftHandIndex]) {
+    const leftMarks = results.multiHandLandmarks[leftHandIndex];
+    const leftFingersCount = countRaisedFingers(leftMarks);
+
+    if (leftFingersCount >= 4) { 
+      if (state.eraseHoldStartTime === 0) {
+        state.eraseHoldStartTime = now;
+      } else if (now - state.eraseHoldStartTime > state.ERASE_HOLD_MS) {
+        if (now - state.lastEraseExecutionTime > 1500) {
+          state.lastEraseExecutionTime = now;
+          clearCanvasTraces();
+        }
+      }
+    } else {
+      state.eraseHoldStartTime = 0;
+    }
+  } else {
+    state.eraseHoldStartTime = 0;
+  }
+  
+  const marks = results.multiHandLandmarks[rightHandIndex];
+  const thumb = marks[4]; 
+  const index = marks[8];
+  
+  const dist = Math.hypot(index.x - thumb.x, index.y - thumb.y);
+  const PINCH_THRESHOLD = 0.082;
+  const isPinching = dist < PINCH_THRESHOLD; 
+  
+  const rightFingersCount = countRaisedFingers(marks);
+
+  if (!isPinching && rightFingersCount >= 1 && rightFingersCount <= 5) {
+    if (state.pendingFingerCount !== rightFingersCount) {
+      state.pendingFingerCount = rightFingersCount;
+      state.fingerHoldStartTime = now;
+    } else {
+      const elapsed = now - state.fingerHoldStartTime;
+      const progressPercent = Math.min(100, Math.floor((elapsed / state.HOLD_DELAY_MS) * 100));
+      
+      const targetColor = COLOR_MAP[rightFingersCount];
+      if (targetColor && state.currentColor !== targetColor) {
+        document.getElementById('lockStatusTxt').textContent = `Holding... ${progressPercent}%`;
+        document.getElementById('lockDot').style.background = "#ffb703";
+
+        if (elapsed >= state.HOLD_DELAY_MS) {
+          state.currentColor = targetColor;
+          updateActiveColorUI(state.currentColor);
+          playSoundEffect('select');
+          document.getElementById('lockStatusTxt').textContent = "Color Locked!";
+          document.getElementById('lockDot').style.background = "var(--success)";
+        }
+      } else {
+        document.getElementById('lockStatusTxt').textContent = "Color Locked";
+        document.getElementById('lockDot').style.background = "var(--success)";
+      }
+    }
+  } else {
+    state.pendingFingerCount = null;
+    state.fingerHoldStartTime = 0;
+  }
+
+  document.getElementById('gestureVal').textContent = isPinching ? "PINCH ACTIVE" : `${rightFingersCount} FINGER(S) UP`;
+  
+  let rawX = 1 - index.x; 
+  let rawY = index.y;
+  if (state.lastFilteredX === null || state.lastFilteredY === null) {
+    state.lastFilteredX = rawX; state.lastFilteredY = rawY;
+  } else {
+    state.lastFilteredX = state.lastFilteredX + state.smoothingFactor * (rawX - state.lastFilteredX);
+    state.lastFilteredY = state.lastFilteredY + state.smoothingFactor * (rawY - state.lastFilteredY);
+  }
+  
+  const currentCoord = { x: state.lastFilteredX, y: state.lastFilteredY };
+  ctx.fillStyle = state.brushMode === 'eraser' ? "#ffffff" : (isPinching ? state.currentColor : "var(--accent-blue)");
+  ctx.beginPath(); 
+  ctx.arc(index.x * c.width, index.y * c.height, state.brushWidth / 2 + 6, 0, 2 * Math.PI); 
+  ctx.fill();
+
+  if (isPinching) {
+    if (!state.isUserDrawing) {
+      playSoundEffect('pinch');
+      
+      if (state.selectedStamp) {
+        saveCanvasStateForUndo();
+        state.stampsList.push({
+          x: currentCoord.x,
+          y: currentCoord.y,
+          icon: state.selectedStamp,
+          size: state.brushWidth * 4 + 20
+        });
+        playSoundEffect('stamp');
+      }
+    }
+
+    document.getElementById('drawStateVal').textContent = "DRAWING";
+    state.isUserDrawing = true;
+    state.activeStrokePoints.push({
+      x: currentCoord.x,
+      y: currentCoord.y,
+      mode: state.brushMode,
+      color: state.brushMode === 'rainbow' ? `hsl(${state.hueIndex}, 100%, 50%)` : state.currentColor
+    });
+    
+    state.hueIndex = (state.hueIndex + 6) % 360;
+    renderStrokesToCanvas();
+  } else {
+    document.getElementById('drawStateVal').textContent = "Idle";
+    if (state.isUserDrawing) {
+      handleStrokeStop();
+    }
+  }
+
+  // LIVE REALTIME UPDATES FOR DISPLAY OUTPUT MODE
+  if (state.isCamRunning) {
+    setupLiveFaceStream();
+  }
+  syncCanvasToPoster();
+}
+
+function updateActiveColorUI(colorHex) {
+  const swatches = document.querySelectorAll('.color-swatch');
+  swatches.forEach(swatch => {
+    if (swatch.getAttribute('data-color') === colorHex) {
+      swatch.classList.add('active');
+    } else {
+      swatch.classList.remove('active');
+    }
+  });
+}
+
+function updateBrushSizeUI(size) {
+  state.brushWidth = parseInt(size);
+  document.getElementById('brushSizeTxt').textContent = `${state.brushWidth}px`;
+  document.getElementById('brushSizeSlider').value = state.brushWidth;
+  
+  const sizeBtns = document.querySelectorAll('.btn-size');
+  sizeBtns.forEach(btn => {
+    if (parseInt(btn.getAttribute('data-size')) === state.brushWidth) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+}
+
+function saveCanvasStateForUndo() {
+  state.undoStack.push({
+    strokes: JSON.parse(JSON.stringify(state.recordedStrokes)),
+    stamps: JSON.parse(JSON.stringify(state.stampsList))
+  });
+  state.redoStack = []; 
+}
+
+function handleStrokeStop() {
+  state.isUserDrawing = false;
+  if (state.activeStrokePoints.length > 1) {
+    saveCanvasStateForUndo();
+    state.recordedStrokes.push({
+      color: state.currentColor,
+      width: state.brushWidth,
+      mode: state.brushMode,
+      points: smoothStrokePoints([...state.activeStrokePoints])
+    });
+  }
+  state.activeStrokePoints = [];
+  syncCanvasToPoster();
+}
+
+function undoCanvasAction() {
+  if (state.undoStack.length === 0) return;
+  state.redoStack.push({
+    strokes: JSON.parse(JSON.stringify(state.recordedStrokes)),
+    stamps: JSON.parse(JSON.stringify(state.stampsList))
+  });
+  const prevState = state.undoStack.pop();
+  state.recordedStrokes = prevState.strokes;
+  state.stampsList = prevState.stamps;
+  playSoundEffect('select');
+  renderStrokesToCanvas();
+}
+
+function redoCanvasAction() {
+  if (state.redoStack.length === 0) return;
+  state.undoStack.push({
+    strokes: JSON.parse(JSON.stringify(state.recordedStrokes)),
+    stamps: JSON.parse(JSON.stringify(state.stampsList))
+  });
+  const nextState = state.redoStack.pop();
+  state.recordedStrokes = nextState.strokes;
+  state.stampsList = nextState.stamps;
+  playSoundEffect('select');
+  renderStrokesToCanvas();
+}
+
+function syncCanvasToPoster() {
+  const mainCanvas = document.getElementById('drawingCanvas');
+  const holders = document.querySelectorAll('.artHolder');
+  
+  holders.forEach(holder => {
+    const cloneCanvas = document.createElement('canvas');
+    cloneCanvas.width = mainCanvas.width;
+    cloneCanvas.height = mainCanvas.height;
+    const ctx = cloneCanvas.getContext('2d');
+    ctx.drawImage(mainCanvas, 0, 0);
+    
+    holder.innerHTML = '';
+    holder.appendChild(cloneCanvas);
+  });
+
+  broadcastStateUpdate();
+}
+
+function drawSmoothStrokePath(ctx, points, width, defaultColor, isSparkle, isEraser) {
+  if (!points || points.length < 2) return;
+  const c = ctx.canvas;
+  ctx.lineWidth = width || 6;
+
+  ctx.save();
+  if (isEraser) {
+    ctx.globalCompositeOperation = 'destination-out';
+  } else {
+    ctx.globalCompositeOperation = 'source-over';
+  }
+
+  if (points.length === 2) {
+    ctx.beginPath();
+    ctx.moveTo(points[0].x * c.width, points[0].y * c.height);
+    ctx.lineTo(points[1].x * c.width, points[1].y * c.height);
+    ctx.strokeStyle = points[1].color || defaultColor;
+    ctx.stroke();
+    if (isSparkle) drawSparkleEffect(ctx, points[1].x * c.width, points[1].y * c.height, width);
+    ctx.restore();
+    return;
+  }
+
+  for (let i = 1; i < points.length - 1; i++) {
+    const currentPoint = points[i];
+    const nextPoint = points[i + 1];
+
+    const xc = (currentPoint.x + nextPoint.x) / 2 * c.width;
+    const yc = (currentPoint.y + nextPoint.y) / 2 * c.height;
+
+    ctx.beginPath();
+    ctx.moveTo(
+      i === 1 ? points[0].x * c.width : (points[i - 1].x + currentPoint.x) / 2 * c.width,
+      i === 1 ? points[0].y * c.height : (points[i - 1].y + currentPoint.y) / 2 * c.height
+    );
+    ctx.quadraticCurveTo(
+      currentPoint.x * c.width,
+      currentPoint.y * c.height,
+      xc,
+      yc
+    );
+    ctx.strokeStyle = currentPoint.color || defaultColor;
+    ctx.stroke();
+
+    if (isSparkle || currentPoint.mode === 'sparkle') {
+      drawSparkleEffect(ctx, currentPoint.x * c.width, currentPoint.y * c.height, width);
+    }
+  }
+  ctx.restore();
+}
+
+function renderStrokesToCanvas() {
+  const c = document.getElementById('drawingCanvas');
+  const ctx = c.getContext('2d');
+  ctx.clearRect(0, 0, c.width, c.height);
+  
+  ctx.lineCap = "round"; ctx.lineJoin = "round";
+  
+  state.recordedStrokes.forEach(stroke => {
+    const pts = stroke.points || stroke;
+    drawSmoothStrokePath(ctx, pts, stroke.width, stroke.color || "#2266ff", stroke.mode === 'sparkle', stroke.mode === 'eraser');
+  });
+  
+  if (state.activeStrokePoints.length > 1) {
+    drawSmoothStrokePath(ctx, state.activeStrokePoints, state.brushWidth, state.currentColor, state.brushMode === 'sparkle', state.brushMode === 'eraser');
+  }
+
+  state.stampsList.forEach(stamp => {
+    ctx.save();
+    ctx.font = `${stamp.size}px Arial`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(stamp.icon, stamp.x * c.width, stamp.y * c.height);
+    ctx.restore();
+  });
+
+  syncCanvasToPoster();
+}
+
+function drawSparkleEffect(ctx, x, y, size) {
+  if (Math.random() > 0.4) return; 
+  ctx.save();
+  ctx.fillStyle = "#ffffff";
+  ctx.beginPath();
+  const radius = size * 0.8 + Math.random() * 6;
+  ctx.arc(x + (Math.random()*16 - 8), y + (Math.random()*16 - 8), radius/3, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+}
+
+function clearCanvasTraces() {
+  playSoundEffect('clear');
+  saveCanvasStateForUndo();
+  state.recordedStrokes = []; state.activeStrokePoints = []; state.stampsList = [];
+  state.lastFilteredX = null; state.lastFilteredY = null;
+  document.getElementById('sketchMatchVal').textContent = "0%";
+  
+  document.getElementById('aiShapeHintVal').textContent = "None";
+  document.getElementById('aiAspectVal').textContent = "0.00";
+  document.getElementById('aiTurnsVal').textContent = "0";
+  document.getElementById('aiCategoryVal').textContent = "None";
+
+  const c = document.getElementById('drawingCanvas');
+  const ctx = c.getContext('2d');
+  ctx.clearRect(0, 0, c.width, c.height);
+  
+  const holders = document.querySelectorAll('.artHolder');
+  holders.forEach(holder => {
+    holder.innerHTML = `<span style="color:var(--text-muted); font-size:15px; font-weight:700; text-align:center; padding:10px;">Canvas Cleared. Awaiting new drawing...</span>`;
+  });
+
+  broadcastStateUpdate({ artDataUrl: '' });
+}
+
+document.getElementById('snapPhotoBtn').onclick = () => {
+  const video = document.getElementById('webcamVideo');
+  if (!state.isCamRunning) {
+    alert("Please click 'Launch Camera' first to snap a picture of the artist!");
+    return;
+  }
+  
+  const canvas = document.createElement('canvas');
+  canvas.width = video.videoWidth || 640;
+  canvas.height = video.videoHeight || 400;
+  const ctx = canvas.getContext('2d');
+  
+  ctx.translate(canvas.width, 0);
+  ctx.scale(-1, 1);
+  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+  
+  const imgUrl = canvas.toDataURL('image/png');
+  state.isSnappedPhoto = true;
+
+  const holders = document.querySelectorAll('.artistImageHolder');
+  holders.forEach(holder => {
+    holder.innerHTML = `<img src="${imgUrl}" alt="The Artist Snap" style="width:100%; height:100%; object-fit:cover;">`;
+  });
+  playSoundEffect('snap');
+  broadcastStateUpdate({ artistPhotoUrl: imgUrl });
+};
+
+function triggerCelebrationReward(callback) {
+  playSoundEffect('celebrate');
+  const canvas = document.getElementById('celebrationCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  canvas.style.display = 'block';
+
+  const particles = [];
+  const colors = ['#00e5ff', '#ff3385', '#ffd000', '#00e676', '#b537ff'];
+
+  for (let i = 0; i < 120; i++) {
+    particles.push({
+      x: canvas.width / 2,
+      y: canvas.height / 2,
+      vx: (Math.random() - 0.5) * 22,
+      vy: (Math.random() - 0.7) * 22,
+      size: Math.random() * 12 + 6,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      alpha: 1
+    });
+  }
+
+  let frame = 0;
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.4;
+      p.alpha -= 0.015;
+      ctx.globalAlpha = Math.max(0, p.alpha);
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    frame++;
+    if (frame < 80) {
+      requestAnimationFrame(animate);
+    } else {
+      canvas.style.display = 'none';
+      if (callback) callback();
+    }
+  }
+  animate();
+}
+
+// BUTTON 1: PRINT PDF POSTER
+document.getElementById('printPdfPosterBtn').onclick = () => {
+  triggerCelebrationReward(() => {
+    window.print();
+  });
+};
+
+// BUTTON 2: SAVE / EXPORT PDF
+document.getElementById('savePdfPosterBtn').onclick = () => {
+  triggerCelebrationReward(() => {
+    window.print();
+  });
+};
+
+document.getElementById('undoBtn').onclick = undoCanvasAction;
+document.getElementById('redoBtn').onclick = redoCanvasAction;
+document.getElementById('canvasClearBtn').onclick = clearCanvasTraces;
+
+document.getElementById('saveSketchBtn').onclick = () => {
+  const c = document.getElementById('drawingCanvas');
+  const image = c.toDataURL("image/png").replace("image/png", "image/octet-stream");
+  const link = document.createElement('a');
+  link.download = `dibuho-art-${Date.now()}.png`;
+  link.href = image;
+  link.click();
+};
+
+document.getElementById('toggleGridBtn').onclick = () => {
+  const container = document.getElementById('drawingCanvasContainer');
+  container.classList.toggle('canvas-grid-bg');
+};
+
+document.getElementById('launchDashboardBtn').onclick = () => {
+  document.getElementById('homeView').style.display = 'none';
+  document.getElementById('workspaceView').style.display = 'block';
+  syncCanvasDimensions();
+};
+
+document.getElementById('exitWorkspaceBtn').onclick = () => {
+  deactivateCameraSystem();
+  document.getElementById('workspaceView').style.display = 'none';
+  document.getElementById('homeView').style.display = 'block';
+};
+
+function syncCanvasDimensions() {
+  const drawNode = document.getElementById('drawingCanvas');
+  const handNode = document.getElementById('handCanvas');
+  const parentNode = drawNode ? drawNode.parentElement : null;
+  
+  if (!parentNode) return;
+
+  const width = parentNode.clientWidth;
+  const height = parentNode.clientHeight;
+
+  if (drawNode && (drawNode.width !== width || drawNode.height !== height)) {
+    drawNode.width = width; 
+    drawNode.height = height;
+    if (handNode) {
+      handNode.width = width; 
+      handNode.height = height;
+    }
+    renderStrokesToCanvas();
+  }
+}
+
+window.addEventListener('resize', syncCanvasDimensions);
+const resizeObserver = new ResizeObserver(() => syncCanvasDimensions());
+const containerNode = document.getElementById('drawingCanvasContainer');
+if (containerNode) resizeObserver.observe(containerNode);
+
+document.getElementById('toggleCamBtn').onclick = () => {
+  if (state.isCamRunning) deactivateCameraSystem(); else activateCameraSystem();
+};
+
+function activateCameraSystem() {
+  state.isCamRunning = true;
+  document.getElementById('toggleCamBtn').textContent = "Kill Video Stream";
+  document.getElementById('camStatusLabel').textContent = "Active";
+  document.getElementById('trackingPrompt').classList.add('hidden');
+  pipelineCamera = new Camera(document.getElementById('webcamVideo'), {
+    onFrame: async () => { if(state.isCamRunning) await mediaPipeHandsEngine.send({ image: document.getElementById('webcamVideo') }); },
+    width: 640, height: 400
+  });
+  pipelineCamera.start();
+
+  const webcamVideo = document.getElementById('webcamVideo');
+  webcamVideo.addEventListener('loadedmetadata', () => {
+    setupLiveFaceStream();
+  }, { once: true });
+}
+
+function deactivateCameraSystem() {
+  state.isCamRunning = false;
+  document.getElementById('toggleCamBtn').textContent = "Launch Camera";
+  document.getElementById('camStatusLabel').textContent = "Offline";
+  document.getElementById('trackingPrompt').classList.remove('hidden');
+  if (pipelineCamera) pipelineCamera.stop();
+}
+
+function smoothStrokePoints(points) {
+  if (points.length < 3) return points;
+  let smoothed = [points[0]];
+  for (let i = 0; i < points.length - 1; i++) {
+    let p0 = points[i]; let p1 = points[i+1];
+    smoothed.push({ 
+      x: 0.75 * p0.x + 0.25 * p1.x, 
+      y: 0.75 * p0.y + 0.25 * p1.y,
+      color: p1.color, mode: p1.mode 
+    });
+    smoothed.push({ 
+      x: 0.25 * p0.x + 0.75 * p1.x, 
+      y: 0.25 * p0.y + 0.75 * p1.y,
+      color: p1.color, mode: p1.mode 
+    });
+  }
+  smoothed.push(points[points.length - 1]);
+  return smoothed;
+}
+
+function trackFpsPerformance() {
+  const now = performance.now();
+  while (state.fpsTimer.length > 0 && state.fpsTimer[0] <= now - 1000) state.fpsTimer.shift();
+  state.fpsTimer.push(now);
+  document.getElementById('fpsVal').textContent = state.fpsTimer.length;
+}
+
+function setBackgroundTemplate(type) {
+  const svg = document.getElementById('bgTemplateOverlay');
+  svg.style.display = 'block';
+  
+  if (type === 'space') {
+    svg.innerHTML = `
+      <circle cx="150" cy="120" r="45" stroke="rgba(255,255,255,0.35)" stroke-width="3" fill="none" stroke-dasharray="6,6"/>
+      <ellipse cx="150" cy="120" rx="70" ry="20" stroke="rgba(255,255,255,0.35)" stroke-width="3" fill="none"/>
+      <polygon points="600,100 630,220 570,220" stroke="rgba(255,255,255,0.35)" stroke-width="3" fill="none"/>
+      <circle cx="600" cy="140" r="15" stroke="rgba(255,255,255,0.35)" stroke-width="3" fill="none"/>
+      <path d="M570,220 Q600,280 630,220" stroke="rgba(255,255,255,0.35)" stroke-width="3" fill="none"/>
+    `;
+  } else if (type === 'castle') {
+    svg.innerHTML = `
+      <rect x="250" y="200" width="300" height="200" stroke="rgba(255,255,255,0.35)" stroke-width="3" fill="none"/>
+      <polygon points="230,200 280,100 330,200" stroke="rgba(255,255,255,0.35)" stroke-width="3" fill="none"/>
+      <polygon points="470,200 520,100 570,200" stroke="rgba(255,255,255,0.35)" stroke-width="3" fill="none"/>
+      <path d="M350,400 A50,50 0 0,1 450,400 Z" stroke="rgba(255,255,255,0.35)" stroke-width="3" fill="none"/>
+    `;
+  } else if (type === 'jungle') {
+    svg.innerHTML = `
+      <path d="M100,450 C150,200 50,150 200,100 C350,50 400,250 500,100 C650,150 600,300 700,450" stroke="rgba(255,255,255,0.35)" stroke-width="3" fill="none"/>
+      <circle cx="200" cy="100" r="30" stroke="rgba(255,255,255,0.35)" stroke-width="3" fill="none"/>
+      <circle cx="500" cy="100" r="40" stroke="rgba(255,255,255,0.35)" stroke-width="3" fill="none"/>
+    `;
+  } else {
+    svg.style.display = 'none';
+    svg.innerHTML = '';
+  }
+}
+
+/* HELPER FUNCTION: LIVE FACE WEBCAM STREAM & REALTIME RENDER */
+function setupLiveFaceStream() {
+  if (state.isSnappedPhoto) return; // Do not overwrite if a snapshot was taken
+
+  const webcamVideo = document.getElementById('webcamVideo');
+  const artistHolders = document.querySelectorAll('.artistImageHolder');
+
+  artistHolders.forEach((holder) => {
+    let liveVideo = holder.querySelector('.live-artist-video');
+    if (!liveVideo) {
+      holder.innerHTML = '';
+      liveVideo = document.createElement('video');
+      liveVideo.className = 'live-artist-video';
+      liveVideo.autoplay = true;
+      liveVideo.playsInline = true;
+      liveVideo.muted = true;
+      liveVideo.style.width = '100%';
+      liveVideo.style.height = '100%';
+      liveVideo.style.objectFit = 'cover';
+      liveVideo.style.transform = 'scaleX(-1)';
+      holder.appendChild(liveVideo);
+    }
+
+    if (webcamVideo && webcamVideo.srcObject) {
+      liveVideo.srcObject = webcamVideo.srcObject;
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const themeBtn = document.getElementById('themeToggleBtn');
+  themeBtn.addEventListener('click', () => {
+    const currentTheme = document.body.getAttribute('data-theme');
+    if (currentTheme === 'light') {
+      document.body.removeAttribute('data-theme');
+      themeBtn.innerHTML = '🌙 Dark Mode';
+    } else {
+      document.body.setAttribute('data-theme', 'light');
+      themeBtn.innerHTML = '☀️ Light Mode';
+    }
+    playSoundEffect('select');
+  });
+
+  const displayBtn = document.getElementById('displayModeToggleBtn');
+  displayBtn.addEventListener('click', () => {
+    document.body.classList.toggle('display-mode');
+    playSoundEffect('select');
+  });
+
+  const openExternalBtn = document.getElementById('openExternalDisplayBtn');
+  if (openExternalBtn) {
+    openExternalBtn.addEventListener('click', () => {
+      const extWin = window.open(window.location.href, '_blank', 'width=1200,height=800');
+      if (extWin) {
+        extWin.addEventListener('load', () => {
+          extWin.document.body.classList.add('display-mode');
+        });
+      }
+    });
+  }
+
+  const swatches = document.querySelectorAll('.color-swatch');
+  swatches.forEach(swatch => {
+    swatch.addEventListener('click', () => {
+      swatches.forEach(s => s.classList.remove('active'));
+      swatch.classList.add('active');
+      state.currentColor = swatch.getAttribute('data-color');
+      if (state.brushMode === 'eraser') {
+        state.brushMode = 'normal';
+        resetBrushBtns();
+        document.getElementById('brushNormalBtn').classList.add('active');
+      }
+      playSoundEffect('select');
+    });
+  });
+
+  const brushSlider = document.getElementById('brushSizeSlider');
+  brushSlider.addEventListener('input', (e) => {
+    updateBrushSizeUI(e.target.value);
+  });
+
+  const sizeBtns = document.querySelectorAll('.btn-size');
+  sizeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const selectedSize = btn.getAttribute('data-size');
+      if (selectedSize) {
+        updateBrushSizeUI(selectedSize);
+        playSoundEffect('select');
+      }
+    });
+  });
+
+  const brushNormalBtn = document.getElementById('brushNormalBtn');
+  const brushEraserBtn = document.getElementById('brushEraserBtn');
+  const brushRainbowBtn = document.getElementById('brushRainbowBtn');
+  const brushSparkleBtn = document.getElementById('brushSparkleBtn');
+
+  function resetBrushBtns() {
+    brushNormalBtn.classList.remove('active');
+    brushEraserBtn.classList.remove('active');
+    brushRainbowBtn.classList.remove('active');
+    brushSparkleBtn.classList.remove('active');
+  }
+
+  brushNormalBtn.onclick = () => { resetBrushBtns(); brushNormalBtn.classList.add('active'); state.brushMode = 'normal'; state.selectedStamp = null; resetStampBtns(); playSoundEffect('select'); };
+  brushEraserBtn.onclick = () => { resetBrushBtns(); brushEraserBtn.classList.add('active'); state.brushMode = 'eraser'; state.selectedStamp = null; resetStampBtns(); playSoundEffect('select'); };
+  brushRainbowBtn.onclick = () => { resetBrushBtns(); brushRainbowBtn.classList.add('active'); state.brushMode = 'rainbow'; state.selectedStamp = null; resetStampBtns(); playSoundEffect('select'); };
+  brushSparkleBtn.onclick = () => { resetBrushBtns(); brushSparkleBtn.classList.add('active'); state.brushMode = 'sparkle'; state.selectedStamp = null; resetStampBtns(); playSoundEffect('select'); };
+
+  const bgNoneBtn = document.getElementById('bgNoneBtn');
+  const bgSpaceBtn = document.getElementById('bgSpaceBtn');
+  const bgCastleBtn = document.getElementById('bgCastleBtn');
+  const bgJungleBtn = document.getElementById('bgJungleBtn');
+
+  function resetBgBtns() {
+    bgNoneBtn.classList.remove('active');
+    bgSpaceBtn.classList.remove('active');
+    bgCastleBtn.classList.remove('active');
+    bgJungleBtn.classList.remove('active');
+  }
+
+  bgNoneBtn.onclick = () => { resetBgBtns(); bgNoneBtn.classList.add('active'); setBackgroundTemplate('none'); playSoundEffect('select'); };
+  bgSpaceBtn.onclick = () => { resetBgBtns(); bgSpaceBtn.classList.add('active'); setBackgroundTemplate('space'); playSoundEffect('select'); };
+  bgCastleBtn.onclick = () => { resetBgBtns(); bgCastleBtn.classList.add('active'); setBackgroundTemplate('castle'); playSoundEffect('select'); };
+  bgJungleBtn.onclick = () => { resetBgBtns(); bgJungleBtn.classList.add('active'); setBackgroundTemplate('jungle'); playSoundEffect('select'); };
+
+  const stampStarBtn = document.getElementById('stampStarBtn');
+  const stampHeartBtn = document.getElementById('stampHeartBtn');
+  const stampCrownBtn = document.getElementById('stampCrownBtn');
+  const stampCatBtn = document.getElementById('stampCatBtn');
+
+  function resetStampBtns() {
+    if(stampStarBtn) stampStarBtn.classList.remove('active');
+    if(stampHeartBtn) stampHeartBtn.classList.remove('active');
+    if(stampCrownBtn) stampCrownBtn.classList.remove('active');
+    if(stampCatBtn) stampCatBtn.classList.remove('active');
+  }
+
+  if(stampStarBtn) stampStarBtn.onclick = () => { resetStampBtns(); stampStarBtn.classList.add('active'); state.selectedStamp = '⭐'; playSoundEffect('select'); };
+  if(stampHeartBtn) stampHeartBtn.onclick = () => { resetStampBtns(); stampHeartBtn.classList.add('active'); state.selectedStamp = '❤️'; playSoundEffect('select'); };
+  if(stampCrownBtn) stampCrownBtn.onclick = () => { resetStampBtns(); stampCrownBtn.classList.add('active'); state.selectedStamp = '👑'; playSoundEffect('select'); };
+  if(stampCatBtn) stampCatBtn.onclick = () => { resetStampBtns(); stampCatBtn.classList.add('active'); state.selectedStamp = '🐱'; playSoundEffect('select'); };
+
+  const frameDefaultBtn = document.getElementById('frameDefaultBtn');
+  const frameSpaceBtn = document.getElementById('frameSpaceBtn');
+  const frameDinoBtn = document.getElementById('frameDinoBtn');
+  const frameGoldBtn = document.getElementById('frameGoldBtn');
+
+  function resetFrameBtns() {
+    if(frameDefaultBtn) frameDefaultBtn.classList.remove('active');
+    if(frameSpaceBtn) frameSpaceBtn.classList.remove('active');
+    if(frameDinoBtn) frameDinoBtn.classList.remove('active');
+    if(frameGoldBtn) frameGoldBtn.classList.remove('active');
+  }
+
+  const printableCards = document.querySelectorAll('.printableCard');
+
+  if(frameDefaultBtn) frameDefaultBtn.onclick = () => {
+    resetFrameBtns(); frameDefaultBtn.classList.add('active');
+    printableCards.forEach(card => card.classList.remove('frame-space', 'frame-dino', 'frame-gold'));
+    playSoundEffect('select');
+    broadcastStateUpdate({ frameClass: '' });
+  };
+  if(frameSpaceBtn) frameSpaceBtn.onclick = () => {
+    resetFrameBtns(); frameSpaceBtn.classList.add('active');
+    printableCards.forEach(card => { card.classList.remove('frame-space', 'frame-dino', 'frame-gold'); card.classList.add('frame-space'); });
+    playSoundEffect('select');
+    broadcastStateUpdate({ frameClass: 'frame-space' });
+  };
+  if(frameDinoBtn) frameDinoBtn.onclick = () => {
+    resetFrameBtns(); frameDinoBtn.classList.add('active');
+    printableCards.forEach(card => { card.classList.remove('frame-space', 'frame-dino', 'frame-gold'); card.classList.add('frame-dino'); });
+    playSoundEffect('select');
+    broadcastStateUpdate({ frameClass: 'frame-dino' });
+  };
+  if(frameGoldBtn) frameGoldBtn.onclick = () => {
+    resetFrameBtns(); frameGoldBtn.classList.add('active');
+    printableCards.forEach(card => { card.classList.remove('frame-space', 'frame-dino', 'frame-gold'); card.classList.add('frame-gold'); });
+    playSoundEffect('select');
+    broadcastStateUpdate({ frameClass: 'frame-gold' });
+  };
+
+  loadDatasetAndBuild600Matrix();
+});
+</script>
+</body>
+</html>
