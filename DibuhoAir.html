@@ -200,18 +200,6 @@ header {
   text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
 }
 
-.brand-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: var(--accent-pink);
-  display: grid;
-  place-items: center;
-  color: white;
-  font-size: 26px;
-  box-shadow: var(--clay-shadow-btn);
-}
-
 .header-controls {
   display: flex;
   align-items: center;
@@ -391,7 +379,7 @@ button.btn-primary {
   height: 100%;
   object-fit: cover;
   transform: scaleX(-1);
-  opacity: 0.45;
+  opacity: 1; /* Updated to 1 to match original lighter camera output */
 }
 .canvas-container canvas {
   position: absolute;
@@ -547,7 +535,7 @@ button.btn-primary {
 }
 .hand-instructions-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Adjusted grid columns to fit side-by-side cleanly */
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
 }
 .instruction-card {
@@ -825,6 +813,23 @@ button.btn-primary {
   display: none;
 }
 
+/* TIMER COUNTDOWN OVERLAY */
+#timerOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bubblegum Sans', cursive;
+  font-size: 120px;
+  color: var(--accent-yellow);
+  text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
+  z-index: 50;
+  border-radius: 28px;
+  pointer-events: none;
+}
+
 .duplicate-print-only {
   display: none;
 }
@@ -1084,7 +1089,7 @@ body.display-mode .art-artist-card {
 </div>
 
 <header>
-  <div class="brand"><div class="brand-icon">D</div><span>DibuhoAir Studio</span></div>
+  <div class="brand"><span>DibuhoAir Studio</span></div>
   <div class="header-controls">
     <div class="chip">Dynamic System Loaded: <b id="totalRegistryCounter">Loading Matrix...</b></div>
     <button class="theme-toggle-btn" id="openExternalDisplayBtn" style="background:var(--accent-blue); color:#000; font-weight:800;">📺 Pop-out External Screen</button>
@@ -1123,12 +1128,15 @@ body.display-mode .art-artist-card {
     <div class="dashboard-grid">
       <div class="panel">
         <div class="panel-title"><span>1 · Camera Feed & Pinch Interface</span><span class="chip" id="camStatusLabel">Offline</span></div>
-        <div class="canvas-container">
+        <div class="canvas-container" id="webcamContainer">
           <video id="webcamVideo" playsinline muted></video>
           <canvas id="handCanvas"></canvas>
           <div class="floating-overlay" id="trackingPrompt">Camera activation required</div>
         </div>
-        <div class="control-bar"><button class="btn-action" id="toggleCamBtn">Launch Camera</button></div>
+        <div class="control-bar">
+          <button class="btn-action" id="toggleCamBtn">Launch Camera</button>
+          <button class="btn-action active" id="snapPhotoBtn">Snap a photo of the artist</button>
+        </div>
         <div class="stats-matrix">
           <div class="stat-box"><span>Cam FPS</span><b id="fpsVal">0</b></div>
           <div class="stat-box"><span>Hand State</span><b id="gestureVal" style="color:var(--accent-blue);">None</b></div>
@@ -1340,7 +1348,6 @@ body.display-mode .art-artist-card {
 
         <!-- SEPARATE PRINT PDF AND SAVE PDF BUTTONS -->
         <div class="control-bar no-print" style="margin-top: 10px;">
-          <button class="btn-action active" id="snapPhotoBtn">📸 Snap Photo of Artist</button>
           <button class="btn-action" id="printPdfPosterBtn" style="background:var(--accent-yellow); color:#000; font-weight:800;">🖨️ Print PDF Poster</button>
           <button class="btn-action" id="savePdfPosterBtn" style="background:var(--success); color:#000; font-weight:800;">💾 Save / Export PDF</button>
         </div>
@@ -1982,31 +1989,55 @@ function clearCanvasTraces() {
   broadcastStateUpdate({ artDataUrl: '' });
 }
 
+// 3-SECOND TIMER SNAP PHOTO IMPLEMENTATION
 document.getElementById('snapPhotoBtn').onclick = () => {
   const video = document.getElementById('webcamVideo');
   if (!state.isCamRunning) {
     alert("Please click 'Launch Camera' first to snap a picture of the artist!");
     return;
   }
-  
-  const canvas = document.createElement('canvas');
-  canvas.width = video.videoWidth || 640;
-  canvas.height = video.videoHeight || 400;
-  const ctx = canvas.getContext('2d');
-  
-  ctx.translate(canvas.width, 0);
-  ctx.scale(-1, 1);
-  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-  
-  const imgUrl = canvas.toDataURL('image/png');
-  state.isSnappedPhoto = true;
 
-  const holders = document.querySelectorAll('.artistImageHolder');
-  holders.forEach(holder => {
-    holder.innerHTML = `<img src="${imgUrl}" alt="The Artist Snap" style="width:100%; height:100%; object-fit:cover;">`;
-  });
-  playSoundEffect('snap');
-  broadcastStateUpdate({ artistPhotoUrl: imgUrl });
+  const container = document.getElementById('webcamContainer');
+  const existingTimer = document.getElementById('timerOverlay');
+  if (existingTimer) existingTimer.remove();
+
+  const timerOverlay = document.createElement('div');
+  timerOverlay.id = 'timerOverlay';
+  container.appendChild(timerOverlay);
+
+  let timeLeft = 3;
+  timerOverlay.textContent = timeLeft;
+  playSoundEffect('select');
+
+  const countdownInterval = setInterval(() => {
+    timeLeft--;
+    if (timeLeft > 0) {
+      timerOverlay.textContent = timeLeft;
+      playSoundEffect('select');
+    } else {
+      clearInterval(countdownInterval);
+      timerOverlay.remove();
+
+      const canvas = document.createElement('canvas');
+      canvas.width = video.videoWidth || 640;
+      canvas.height = video.videoHeight || 400;
+      const ctx = canvas.getContext('2d');
+      
+      ctx.translate(canvas.width, 0);
+      ctx.scale(-1, 1);
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      
+      const imgUrl = canvas.toDataURL('image/png');
+      state.isSnappedPhoto = true;
+
+      const holders = document.querySelectorAll('.artistImageHolder');
+      holders.forEach(holder => {
+        holder.innerHTML = `<img src="${imgUrl}" alt="The Artist Snap" style="width:100%; height:100%; object-fit:cover;">`;
+      });
+      playSoundEffect('snap');
+      broadcastStateUpdate({ artistPhotoUrl: imgUrl });
+    }
+  }, 1000);
 };
 
 function triggerCelebrationReward(callback) {
